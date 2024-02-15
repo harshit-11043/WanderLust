@@ -5,15 +5,19 @@
     <h2>Create a new Listing</h2>
     <br><br>
     <br>
-    <form action="/listings" method="POST">
+    <form action="/listings" method="POST" novalidate class="needs-validation">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
         <input type="text" placeholder="Add a Catchy title" name="Listing[title]" class="form-control" required> 
+        <div class="invalid-feedback">Please Enter title</div>
+        <div class="valid-feedback">Title Looks Good!</div>
         </div>
         
         <div class="mb-3">
             <label for="description" class="form-label" >description</label>
             <textarea name="Listing[description]" id="" cols="30" rows="10" placeholder="Enter description" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please Enter description</div>
+        <div class="valid-feedback">Description length is Good!</div>
         </div>
         
         <div class="mb-3">
@@ -23,21 +27,22 @@
         <div class="row">
         <div class="mb-3 col-md-4">
             <label for="price" class="form-label">price</label>
-            <input type="number" placeholder="1200" name="Listing[price]" class="form-control" required>
+            <input  placeholder="1200" name="Listing[price]" class="form-control" required>
+            <div class="invalid-feedback">Please Enter Price</div>
+        
         </div>
         <div class="mb-3 col-md-8">
             <label for="country" class="form-label">country</label>
             <input type="text" placeholder="India" name="Listing[country]" class="form-control" required>
+            <div class="invalid-feedback">country should have to be add</div>
+        
         </div>
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">location</label>
              <input type="text" placeholder="Gurugram" name="Listing[location]" class="form-control" required>
+             <div class="invalid-feedback">Location should have to be add</div>
         </div>
-        
-       
-        
-        
         <button class="btn btn-dark">Add me</button>
         <br><br>
     </form>

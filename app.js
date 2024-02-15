@@ -6,6 +6,7 @@ const path=require("path");
 const methodOverride=require("method-override");
 const MongoURL="mongodb://127.0.0.1:27017/wanderLustproj";
 const ejsMate=require("ejs-mate");
+const wrapAsync=require("./utils/wrapAsync.js");
 
 app.set("View engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -54,13 +55,13 @@ app.get("/listings/new",(req,res)=>
     res.render("listings/new.ejs");
 });
 // Create Route
-app.post("/listings",async(req,res)=>
+app.post("/listings",wrapAsync(async(req,res,next)=>
 {
-    
     const newone=new Listing(req.body.Listing);
     await newone.save();
     res.redirect("/listings");
-});
+})
+);
 // Show Route
 app.get("/listings/:id",async(req,res)=>
 {
@@ -91,6 +92,11 @@ app.delete("/listings/:id", async (req, res) => {
         console.log(deletedList);
         res.redirect("/listings");
 });
+
+app.use((err,req,res,next)=>
+{
+    res.send("Something went wrong");
+})
 app.listen(8080,()=>
 {
     console.log("Server is listening port 8080");

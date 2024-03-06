@@ -2,10 +2,11 @@ const mongoose=require("mongoose");
 const initdata=require("./data.js");
 const Listing= require("../models/listing.js");
 
-const MongoURL="mongodb://127.0.0.1:27017/wanderLustproj";
+// const MongoURL="mongodb://127.0.0.1:27017/wanderLustproj";
+const dburl=process.env.ATLASDB_URL;
 async function main()
 {
-    await mongoose.connect(MongoURL)
+    await mongoose.connect(dburl)
 }
 
 main().then(()=>

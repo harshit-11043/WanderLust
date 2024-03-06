@@ -11,13 +11,8 @@ const ListingSchema= new Schema(
         description:String,
         image:
         {
-            type:String,
-            default:
-            "https://www.pexels.com/photo/green-trees-under-blue-and-orange-sky-during-sunset-1107717/",
-            set:(v)=> v===""
-            ?"https://www.pexels.com/photo/green-trees-under-blue-and-orange-sky-during-sunset-1107717/"
-            :v,
-
+            url:String,
+            filename:String,
         },
         price:Number,
         location:String,
@@ -33,6 +28,19 @@ const ListingSchema= new Schema(
             type:Schema.Types.ObjectId,
             ref:"User",
         },
+        geometry:{
+            type:
+            {
+                type:String,
+                enum:["Point"],
+                required:true
+            },
+            coordinates:
+            {
+                type:[Number],
+                required:true,
+            }
+        }
     });
 ListingSchema.post("findOneAndDelete",async(Listing)=>
 {
